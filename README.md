@@ -24,16 +24,21 @@ Make sure you have the following installed:
 
 ---
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/maalande2/abc-notes.git
+```
+
+### Set up the server
+
+```bash
 cd abc-notes
 cd server
 flask run
 ```
 
-For Setting up the client
+### Set up the client
 
 ```bash
 cd ../client
