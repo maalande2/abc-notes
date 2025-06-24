@@ -27,7 +27,7 @@ Make sure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/maalande/abc-notes.git
+git clone https://github.com/maalande2/abc-notes.git
 cd abc-notes
 cd server
 flask run
