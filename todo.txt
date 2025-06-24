@@ -1,9 +1,0 @@
-x create server
-- set up gpt api
-    - isn't working because using outdated function
-- set up mongodb
-- start with client
-- add oauth
-- save music option
-
-mongodb+srv://maalande2:ggdrxlOLFo4NgBBQ@notes.x5xo7xf.mongodb.net/?retryWrites=true&w=majority&appName=notes
