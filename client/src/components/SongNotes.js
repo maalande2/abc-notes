@@ -1,13 +1,15 @@
-import React, { useRef} from 'react'
+import React, { useRef, useState } from 'react'
 
 function SongNotes() {
   const songRef = useRef();
+  const [notes, setNotes] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevents reload
     const songName = songRef.current.value;
     console.log(songName);
-
+    setIsLoading(true);
     // try fetch req
     try {
       const response = await fetch('/get-notes', {
@@ -19,7 +21,9 @@ function SongNotes() {
       })
 
       const data = await response.json();
-      console.log(data.notes); // notes stored in data.notes from flask
+      setIsLoading(false);
+      console.log(data.notes);
+      setNotes(data.notes); // notes from server
     } catch(err) {
       console.error(err.message);
     }
@@ -28,8 +32,19 @@ function SongNotes() {
 
   return (
 <div className="bg-gray-600 h-screen w-screen flex flex-col items-center justify-center px-4">
-  <h1 className="text-gray-100 text-2xl -mt-16 mb-16">abc notes</h1>
+  
+  {/* navigation buttons */}
+  <div className='absolute top-4 left-4 flex flex-row space-x-4'>
+    <a href="/" className='text-gray-100 underline'>home</a>
+    <a href="/search" className='text-gray-100 underline'>search song</a>
+  </div>
 
+  {/* page title */}
+  <h1 className="absolute top-64 left-1/2 transform -translate-x-1/2 text-gray-100 text-2xl">
+        abc notes
+  </h1>
+
+  {/* song search form */}
   <form onSubmit={handleSubmit} className="flex items-center gap-2 w-full max-w-xl mb-4">
     <input
       ref={songRef}
@@ -46,7 +61,11 @@ function SongNotes() {
 
   {/* result box for notes */}
   <div className="bg-gray-700 w-full max-w-xl min-h-[120px] p-4 rounded-md text-gray-100 shadow-md">
-
+    { isLoading ? (
+      <p className='animate-pulse'>Loading Notes...</p>
+    ) : (
+      <pre>{notes}</pre>
+    )}
   </div>
 </div>
   );
