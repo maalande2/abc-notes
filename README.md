@@ -35,7 +35,7 @@ git clone https://github.com/maalande2/abc-notes.git
 ```bash
 cd abc-notes
 cd server
-flask run
+python3 app.py
 ```
 
 ### Set up the client
