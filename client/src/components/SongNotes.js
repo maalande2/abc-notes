@@ -10,6 +10,7 @@ function SongNotes() {
     const songName = songRef.current.value;
     console.log(songName);
     setIsLoading(true);
+    
     // try fetch req
     try {
       const response = await fetch('/get-notes', {
