@@ -8,6 +8,7 @@
 
 - **Frontend:** React
 - **Backend:** Flask
+- **Database:** MongoDB
 - **API Integration:** OpenAI API (for note generation)
 - **Styling:** Tailwind CSS
 
