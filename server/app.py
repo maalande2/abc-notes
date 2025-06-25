@@ -24,7 +24,7 @@ def get_notes():
     song = data.get("songName")
 
     if not song:
-        return jsonify({"error": "Missing song"}), 400
+        return jsonify({"notes":"Enter a song to find notes."}) # err 400
 
     instruction = (
         "In the next message I'll send a song name and artist. Transcribe the melody of that piece. include as much of the song as you can as long as it's available online or public domain"
@@ -40,6 +40,9 @@ def get_notes():
         temperature=0
     )
     # print(response.output_text)
+    if (response.output_text == "null"):
+        return jsonify({"notes":"Notes can't be found."})
+
 
     return jsonify({"notes":response.output_text}) # return jsonified response output
 
