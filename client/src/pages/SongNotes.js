@@ -1,4 +1,8 @@
 import React, { useRef, useState } from 'react'
+import PageTitle from '../components/PageTitle';
+import NavigationButtons from '../components/NavigationButtons';
+
+
 
 function SongNotes() {
   const songRef = useRef();
@@ -10,7 +14,7 @@ function SongNotes() {
     const songName = songRef.current.value;
     console.log(songName);
     setIsLoading(true);
-    
+
     // try fetch req
     try {
       const response = await fetch('/get-notes', {
@@ -35,22 +39,17 @@ function SongNotes() {
   <div className="bg-gray-600 h-screen w-screen flex flex-col items-center justify-center px-4">
     
     {/* navigation buttons */}
-    <div className='absolute top-4 left-4 flex flex-row space-x-4'>
-      <a href="/" className='text-gray-100 underline'>home</a>
-      <a href="/search" className='text-gray-100 underline'>search song</a>
-    </div>
+    <NavigationButtons/>
 
     {/* page title */}
-    <h1 className="absolute top-32 left-1/2 transform -translate-x-1/2 text-gray-100 text-2xl">
-          abc notes
-    </h1>
+    <PageTitle/>
 
     {/* song search form */}
     <form onSubmit={handleSubmit} className="flex items-center gap-2 w-full max-w-xl mb-4">
       <input
         ref={songRef}
         placeholder="enter music and artist"
-        className="bg-gray-300 rounded-md p-2 placeholder:text-md text-md flex-1"
+        className="bg-gray-300 rounded-md p-2 text-md flex-1"
       />
       <button
         type="submit"
@@ -60,7 +59,7 @@ function SongNotes() {
       </button>
     </form>
 
-    {/* result box for notes */}
+    {/* result box for notes */} 
     <div className="bg-gray-700 w-full max-w-xl min-h-[120px] p-4 rounded-md text-gray-100 shadow-md">
       { isLoading ? (
         <p className='animate-pulse'>Loading Notes...</p>
